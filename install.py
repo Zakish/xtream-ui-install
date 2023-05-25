@@ -37,12 +37,12 @@ def getVersion():
     except: return ""
 
 def printc(rText, rColour=col.OKBLUE, rPadding=0):
-    print "%s ┌──────────────────────────────────────────┐ %s" % (rColour, col.ENDC)
-    for i in range(rPadding): print "%s │                                          │ %s" % (rColour, col.ENDC)
-    print "%s │ %s%s%s │ %s" % (rColour, " "*(20-(len(rText)/2)), rText, " "*(40-(20-(len(rText)/2))-len(rText)), col.ENDC)
-    for i in range(rPadding): print "%s │                                          │ %s" % (rColour, col.ENDC)
-    print "%s └──────────────────────────────────────────┘ %s" % (rColour, col.ENDC)
-    print " "
+    print ("%s ┌──────────────────────────────────────────┐ %s" % (rColour, col.ENDC))
+    for i in range(rPadding): print ("%s │                                          │ %s" % (rColour, col.ENDC))
+    print ("%s │ %s%s%s │ %s" % (rColour, " "*(20-(len(rText)/2)), rText, " "*(40-(20-(len(rText)/2))-len(rText)), col.ENDC))
+    for i in range(rPadding): print ("%s │                                          │ %s" % (rColour, col.ENDC))
+    print ("%s └──────────────────────────────────────────┘ %s" % (rColour, col.ENDC))
+    print (" ")
 
 def prepare(rType="MAIN"):
     global rPackages
@@ -145,7 +145,7 @@ def mysql(rUsername, rPassword):
     printc("Enter MySQL Root Password:", col.WARNING)
     for i in range(5):
         rMySQLRoot = raw_input("  ")
-        print " "
+        print (" ")
         if len(rMySQLRoot) > 0: rExtra = " -p%s" % rMySQLRoot
         else: rExtra = ""
         printc("Drop existing & create database? Y/N", col.WARNING)
@@ -243,19 +243,19 @@ def modifyNginx():
 
 if __name__ == "__main__":
     printc("Xtream UI - Installer Mirror", col.OKGREEN, 2)
-    print "%s │ NOTE: this is a forked mirror of original installer from https://xtream-ui.com/install/install.py %s" % (col.OKGREEN, col.ENDC)
-    print "%s │ Check out the mirror repo: https://xtream-ui.org %s" % (col.OKGREEN, col.ENDC)
-    print "%s │ and https://github.com/xtream-ui-org/xtream-ui-install %s" % (col.OKGREEN, col.ENDC)
-    print " "
+    print ("%s │ NOTE: this is a forked mirror of original installer from https://xtream-ui.com/install/install.py %s" % (col.OKGREEN, col.ENDC))
+    print ("%s │ Check out the mirror repo: https://xtream-ui.org %s" % (col.OKGREEN, col.ENDC))
+    print ("%s │ and https://github.com/xtream-ui-org/xtream-ui-install %s" % (col.OKGREEN, col.ENDC))
+    print (" ")
     rType = raw_input("  Installation Type [MAIN, LB, UPDATE]: ")
-    print " "
+    print (" ")
     if rType.upper() in ["MAIN", "LB"]:
         if rType.upper() == "LB":
             rHost = raw_input("  Main Server IP Address: ")
             rPassword = raw_input("  MySQL Password: ")
             try: rServerID = int(raw_input("  Load Balancer Server ID: "))
             except: rServerID = -1
-            print " "
+            print (" ")
         else:
             rHost = "127.0.0.1"
             rPassword = generate()
@@ -266,7 +266,7 @@ if __name__ == "__main__":
         if len(rHost) > 0 and len(rPassword) > 0 and rServerID > -1:
             printc("Start installation? Y/N", col.WARNING)
             if raw_input("  ").upper() == "Y":
-                print " "
+                print (" ")
                 rRet = prepare(rType.upper())
                 if not install(rType.upper()): sys.exit(1)
                 if rType.upper() == "MAIN":
